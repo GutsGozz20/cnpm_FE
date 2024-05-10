@@ -1,0 +1,21 @@
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 15px;
+  border-radius: 20px; /* Bán kính mới */
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+  border-radius: 20px; /* Bán kính mới */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 20px; /* Bán kính mới */
+  border: 3px solid var(--primary);
+}
