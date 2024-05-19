@@ -1,20 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState , useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
+import GlobalStateContext from "../../GlobalStateContext"
 import logo from "../../asset/image/logo.webp";
 import footer from "../../asset/image/footer.png";
 import button from "../../asset/image/button.webp";
 import banner from "../../asset/image/banner.webp";
+// Thay vì phải truyền từng cái thì dừ m vô đây m gọi cái globalState ra, hắn chính là những cái có trong cái t chuẩn bị trỏ
 
+
+// Tạo context để chia sẻ trạng thái giữa các thành phần
 const Home = () => {
+    const globalState = useContext(GlobalStateContext)
+
     const [selected, setSelected] = useState(1);
     const navigate = useNavigate();
 
     const handleStartClick = () => {
         navigate('/test');
     };
+ 
+
+    const handleTimeChange = (e) => {
+        const timer = +e.target.value
+        globalState.setTime(timer);
+    };
+
+    const handleNoOfOperatorChange = (e)=> {
+        const operator = e.target.value
+        globalState.setOperatorCount(operator);
+    };
+
+    const handleOperatorChange = (e) => {
+        const selectedOperator  = e.target.value
+        globalState.setSelectedOperator(selectedOperator);
+    };
+
+    const handleDigitNumberChange = (e) => {
+        const digitNum = e.target.value
+        globalState.setDigitNumber(digitNum);
+    };
 
     return (
-        <div>
+       <div>
             <div className='flex justify-center items-center'>
                 <img src={logo} alt=""/>
             </div>
@@ -37,11 +64,14 @@ const Home = () => {
                             <div className='font-semibold text-[30px] max-w-sm w-[300px]'>Time</div>
                             <div>
                                 <form className="max-w-sm mx-auto w-[640px] font-semibold">
-                                    <select style={{fontSize: "24px", backgroundColor: "#1dd1a1"}} id="countries" className="text-[24px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected value="" className='font-semibold text-[24px]'>10s/question</option>
-                                        <option value="CA" className='font-semibold text-[24px]'>20s/question</option>
-                                        <option value="FR" className='font-semibold text-[24px]'>60s/question</option>
-                                        <option value="DE" className='font-semibold text-[24px]'>180s/question</option>
+                                    <select style={{fontSize: "24px", backgroundColor: "#1dd1a1"}}
+                                    value={globalState.time}
+                                    onChange={handleTimeChange}
+                                    id="countries" className="text-[24px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected value="10" className='font-semibold text-[24px]'>10s/question</option>
+                                        <option value="20" className='font-semibold text-[24px]'>20s/question</option>
+                                        <option value="60" className='font-semibold text-[24px]'>60s/question</option>
+                                        <option value="180" className='font-semibold text-[24px]'>180s/question</option>
                                     </select>
                                 </form>
                             </div>
@@ -51,9 +81,12 @@ const Home = () => {
                             <div className='font-semibold text-[30px] max-w-sm w-[300px]'>No of Operator</div>
                             <div>
                                 <form className="max-w-sm mx-auto w-[640px] font-semibold">
-                                    <select style={{fontSize: "24px", backgroundColor: "#1dd1a1"}} className="text-[24px] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected value=""  className='font-semibold text-[24px]'>One(1)</option>
-                                        <option value="CA" className='font-semibold text-[24px]'>Two(2)</option>
+                                    <select style={{fontSize: "24px", backgroundColor: "#1dd1a1"}}
+                                    value={globalState.operatorCount}
+                                    onChange={handleNoOfOperatorChange}
+                                    className="text-[24px] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected value="1"  className='font-semibold text-[24px]'>One(1)</option>
+                                        <option value="2" className='font-semibold text-[24px]'>Two(2)</option>
                                     </select>
                                 </form>
                             </div>
@@ -63,11 +96,14 @@ const Home = () => {
                             <div className='font-semibold text-[30px] max-w-sm w-[300px]'>Operator</div>
                             <div>
                                 <form className="max-w-sm mx-auto w-[640px] font-semibold">
-                                    <select style={{fontSize: "24px", backgroundColor: "#1dd1a1"}} id="countries" className="text-[24px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected value="" className='font-semibold text-[24px]'>Addition(+)</option>
-                                        <option value="CA" className='font-semibold text-[24px]'>Subtraction(-)</option>
-                                        <option value="FR" className='font-semibold text-[24px]'>Multiplication(*)</option>
-                                        <option value="DE" className='font-semibold text-[24px]'>Division(/)</option>
+                                    <select style={{fontSize: "24px", backgroundColor: "#1dd1a1"}}
+                                     value={globalState.selectedOperator}
+                                     onChange={handleOperatorChange}
+                                    id="countries" className="text-[24px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected value="+" className='font-semibold text-[24px]'>Addition(+)</option>
+                                        <option value="-" className='font-semibold text-[24px]'>Subtraction(-)</option>
+                                        <option value="*" className='font-semibold text-[24px]'>Multiplication(*)</option>
+                                        <option value="/" className='font-semibold text-[24px]'>Division(/)</option>
                                     </select>
                                 </form>
                             </div>
@@ -77,9 +113,12 @@ const Home = () => {
                             <div className='font-semibold text-[30px] max-w-sm w-[300px]'>Digit number</div>
                             <div>
                                 <form className="max-w-sm mx-auto w-[640px] font-semibold">
-                                    <select style={{fontSize: "24px", backgroundColor: "#1dd1a1"}} id="countries" className="text-[24px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected value="" className='font-semibold text-[24px]'>One(1)</option>
-                                        <option value="CA" className='font-semibold text-[24px]'>Two(2)</option>
+                                    <select style={{fontSize: "24px", backgroundColor: "#1dd1a1"}}
+                                     value={globalState.digitNumber}
+                                     onChange={handleDigitNumberChange}
+                                    id="countries" className="text-[24px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected value="1" className='font-semibold text-[24px]'>One(1)</option>
+                                        <option value="2" className='font-semibold text-[24px]'>Two(2)</option>
                                     </select>
                                 </form>
                             </div>
@@ -112,6 +151,8 @@ const Home = () => {
                     </div>
                 </>
             }
+
+            {/* Cái nút hắn ở mô á */}
 
             <div className='flex items-end justify-center'>
                 <img src={footer} alt="" className='w-[250px]'/>

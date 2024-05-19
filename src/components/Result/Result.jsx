@@ -1,4 +1,5 @@
 import React from 'react';
+import button from "../../asset/image/button.webp";
 
 import { useNavigate } from 'react-router-dom';
 const Result = () => {
@@ -10,7 +11,7 @@ const Result = () => {
   return (
 <div className="container mx-auto max-w-sm">
       <div className="flex flex-col items-center mt-10">
-        <h1 className="text-3xl font-bold text-gray-800">Finger Math</h1>
+        <h1 className="text-5xl font-bold text-gray-800">Finger Math</h1>
         <div className='flex justify-center items-center gap-4 mt-4'>
                 <div className='group/item'>
                     <button className='w-max-content text-[30px] group-hover/item:translate-y-[-2px]'>Tutorial</button>
@@ -23,14 +24,19 @@ const Result = () => {
             </div>
       </div>
 
-      <div className="mt-16 flex flex-col items-center">
-        <h2 className="text-2xl font-bold text-gray-800">Congrats Cat</h2>
-        <p className="mt-2 text-gray-600">You got 0/100</p>
+      <div className="mt-64 flex flex-col items-center">
+        <h2 className="text-5xl font-bold text-gray-800 mb-5">Congrats Cat</h2>
+        <p className="text-5xl font-bold text-gray-800">You got 0/100</p>
       </div>
 
-      <div className="mt-16 flex flex-col items-center " onClick={handleStartClick}>
-        <p className="text-gray-600">Not enough to receive a reward</p>
-        <button className="mt-4 bg-blue-500 text-white font-bold py-2 px-4 rounded">Finish</button>
+      <div className="mt-32 flex flex-col items-center " onClick={handleStartClick}>
+        <p className="text-gray-900 text-2xl mb-5">Not enough to receive a reward</p>
+        <div className='relative'>
+            <img src={button} alt="" className='w-[200px] h-[48px]'/>
+            <span className='text-[20px] hover:text-red-600 font-semibold absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>Finish</span>
+        </div>
+                   
+
       </div>
     </div>
   );

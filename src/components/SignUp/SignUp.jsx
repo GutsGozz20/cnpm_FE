@@ -94,16 +94,18 @@ const SignUp = () => {
                     />
                 </div>
                 <div className="flex items-center justify-between">
-                    <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline">
+                    <button type="submit" className=" w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline">
                         Sign Up
                     </button>
+                    
                 </div>
                 {message && <p>Người dùng đã tồn tại</p>}
                 {isRegistered && (
                     <p className="text-green-500 mt-4 text-center">Đăng ký thành công! Bạn có thể sử dụng tài khoản này để đăng nhập.</p>
                 )}
                 <div className="mt-6">
-                    <p className="text-gray-700 text-sm font-bold">Already have an account? <a href="/signin" className="text-blue-500 hover:text-blue-800">Sign In</a></p>
+                    <hr />
+                    <p className="text-gray-700 text-sm font-bold text-center">Already have an account? <a href="/signin" className="text-blue-500 hover:text-blue-800">Sign In</a></p>
                 </div>
             </form>
         </div>
