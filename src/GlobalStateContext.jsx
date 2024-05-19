@@ -5,7 +5,7 @@ const GlobalStateContext = createContext();
 export const GlobalStateProvider = ({ children }) => {
 
     const [time, setTime] = useState(10);
-    const [operatorCount, setOperatorCount] = useState(1);
+    const [operatorCount, setOperatorCount] = useState('1');
     const [selectedOperator, setSelectedOperator] = useState('+');
     const [digitNumber, setDigitNumber] = useState(1);
 
