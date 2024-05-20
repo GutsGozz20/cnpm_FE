@@ -1,9 +1,10 @@
 import React from 'react';
 import button from "../../asset/image/button.webp";
-
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 const Result = () => {
-  const navigate = useNavigate(); // Using useNavigate hook instead of useHistory
+  const navigate = useNavigate();
+  const location = useLocation();
+  const {score} = location.state;
 
   const handleStartClick = () => {
         navigate('/');
@@ -25,8 +26,8 @@ const Result = () => {
       </div>
 
       <div className="mt-64 flex flex-col items-center">
-        <h2 className="text-5xl font-bold text-gray-800 mb-5">Congrats Cat</h2>
-        <p className="text-5xl font-bold text-gray-800">You got 0/100</p>
+        <h2 className="text-5xl font-bold text-gray-800 mb-5">Congrats You</h2>
+        <p className="text-5xl font-bold text-gray-800">You got {score}/100</p>
       </div>
 
       <div className="mt-32 flex flex-col items-center " onClick={handleStartClick}>

@@ -1,6 +1,7 @@
 import React, { useState , useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import GlobalStateContext from "../../GlobalStateContext"
+import { createQuestion } from '../../helper/createQuestion';
 import logo from "../../asset/image/logo.webp";
 import footer from "../../asset/image/footer.png";
 import button from "../../asset/image/button.webp";
@@ -16,7 +17,8 @@ const Home = () => {
     const navigate = useNavigate();
 
     const handleStartClick = () => {
-        navigate('/test');
+        globalState.setCurrentQuestion(createQuestion(globalState.operatorCount, globalState.selectedOperator, globalState.digitNumber))
+        navigate('/test', { state: { time: globalState.time } });
     };
  
 
@@ -102,8 +104,8 @@ const Home = () => {
                                     id="countries" className="text-[24px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option selected value="+" className='font-semibold text-[24px]'>Addition(+)</option>
                                         <option value="-" className='font-semibold text-[24px]'>Subtraction(-)</option>
-                                        <option value="*" className='font-semibold text-[24px]'>Multiplication(*)</option>
-                                        <option value="/" className='font-semibold text-[24px]'>Division(/)</option>
+                                        {globalState.operatorCount === "1" && <option value="*" className='font-semibold text-[24px]'>Multiplication(*)</option>}
+                                        {globalState.operatorCount === "1" && <option value="/" className='font-semibold text-[24px]'>Division(/)</option>}
                                     </select>
                                 </form>
                             </div>
@@ -151,8 +153,6 @@ const Home = () => {
                     </div>
                 </>
             }
-
-            {/* Cái nút hắn ở mô á */}
 
             <div className='flex items-end justify-center'>
                 <img src={footer} alt="" className='w-[250px]'/>

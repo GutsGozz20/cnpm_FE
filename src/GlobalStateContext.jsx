@@ -8,6 +8,8 @@ export const GlobalStateProvider = ({ children }) => {
     const [operatorCount, setOperatorCount] = useState('1');
     const [selectedOperator, setSelectedOperator] = useState('+');
     const [digitNumber, setDigitNumber] = useState(1);
+    const[currentQuestion, setCurrentQuestion] = useState("");
+
 
     const globalState = {
         time,
@@ -17,7 +19,9 @@ export const GlobalStateProvider = ({ children }) => {
         selectedOperator,
         setSelectedOperator,
         digitNumber,
-        setDigitNumber
+        setDigitNumber,
+        currentQuestion,
+        setCurrentQuestion
     }
 
     return (
