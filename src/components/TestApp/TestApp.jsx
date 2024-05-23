@@ -14,7 +14,7 @@ const TestApp = () => {
   const [score, setScore] = useState(0);
   const [questionAnswered, setQuestionAnswered] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
-  const [time, setTime] = useState(globalState.time);
+  const [timer, setTimer] = useState(Number(globalState.time));
   // const [updateCount, setUpdateCount] = useState(0); 
   const [showModal, setShowModal] = useState(false);
 
@@ -36,18 +36,21 @@ const TestApp = () => {
       console.log("Done!!")
       if(!questionAnswered){
         setScore(prevScore => prevScore + 10);
-        setCurrentAnswer(true);
+        setCurrentAnswer(evaluateExpression);
       }
     } else {
        console.log("Ngu dốt!!")
+       setCurrentAnswer(evaluateExpression);
     }
-    setCurrentAnswer(evaluateExpression);
+    // setCurrentAnswer(evaluateExpression);
     setIsSubmit(true);
   };
   
   const handleNext = () => {
     if (!inputValue) {
       setShowModal(true);
+      // setTimer(timer);
+      // setTimer(Number(globalState.time));
       return;
     }
 
@@ -60,39 +63,37 @@ const TestApp = () => {
       setInputValue('');
       setQuestionAnswered(false);
       setIsSubmit(false);
-      setTime(globalState.time);
+      setTimer(Number(globalState.time));
     }
   };
 
   const handleSaveChanges = () => {
     if (!inputValue) {
-      setShowModal(false);
+      // setShowModal(false);
       handleNext();
-      return;
+      // return;
     }
     setCurrentAnswer(true);
     setIsSubmit(true);
     setShowModal(false);
   };
 
- 
+  // Timer.
   useEffect(() => {
-    // console.log(1231)
-    const timer = setInterval(() => {
-      setTime((prevTime) => {
-        if (prevTime > 0) {
-          return prevTime - 1;
-        } else {
-          clearInterval(timer);
-          handleNext();
-          return 0;
-        }
-      });
+    const countTimer = setInterval(() => {
+      setTimer((prev) => prev - 1);
     }, 1000);
-    return () => clearInterval(timer);
-  }, [count]);
 
-  
+    const outTimer = setTimeout(() => {
+      handleNext();
+    }, globalState.time * 1000);
+
+    // Cleanup Function
+    return () => {
+      clearInterval(countTimer);
+      clearTimeout(outTimer);
+    };
+  }, [count]);
 
 
   return (
@@ -123,7 +124,7 @@ const TestApp = () => {
         </div>
         <div className="flex items-center mt-4">
           <p className="text-lg font-bold text-gray-800 mr-4">Time:</p>
-          <p className="text-lg font-semibold text-gray-800">{globalState.time} s</p>
+          <p className="text-lg font-semibold text-gray-800">{timer} s</p>
         </div>
 
         </div>
@@ -149,7 +150,7 @@ const TestApp = () => {
 
 
       <div className="flex flex-wrap justify-center mt-8 ">
-        <div className='relative mr-8' disabled={isSubmit} onClick={handleSubmit}>
+        <div className='relative mr-8' disabled={isSubmit} onClick ={() => handleSubmit()}>
             <img src={button} alt="" className='w-[100px] h-[48px] ' />
             <button className='text-[20px]  hover:text-red-600 font-semibold absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]' >Submit</button>
         </div>

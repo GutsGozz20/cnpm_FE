@@ -4,7 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const Result = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {score} = location.state;
+  const {score} = location?.state;
+  // const numberOfCorrectAnswered = score/10;
 
   const handleStartClick = () => {
         navigate('/');
@@ -25,10 +26,12 @@ const Result = () => {
             </div>
       </div>
 
-      <div className="mt-64 flex flex-col items-center">
+      <div className="mt-32 flex flex-col items-center">
         <h2 className="text-5xl font-bold text-gray-800 mb-5">Congrats You</h2>
         <p className="text-5xl font-bold text-gray-800">You got {score}/100</p>
-      </div>
+        {/* <p className='text-4xl font-bold text-gray-800 mt-8'>Number of Correct Answered {numberOfCorrectAnswered} question</p> */}
+    </div>
+
 
       <div className="mt-32 flex flex-col items-center " onClick={handleStartClick}>
         <p className="text-gray-900 text-2xl mb-5">Not enough to receive a reward</p>

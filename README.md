@@ -14,3 +14,5 @@ Dừ xử lí cái đầu vào với nhập chì, là ok á. UI tự fix sau, t 
        */
          // Khi câu hỏi thay đỏi thì set lại cái time nên m truyền cái count vô đây
     // Ví dụ nha
+     <Route path="/users/:userId" element={<Single />} />
+          <Route path="/users/:userId/new" element={<New inputs={userInputs} title="Add New User" />} />
