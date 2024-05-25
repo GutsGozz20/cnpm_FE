@@ -15,27 +15,12 @@ import { NearMe } from '@mui/icons-material';
 import New from './components/new/New';
 import CustomerUser from './components/customersUser/CutomerUser';
 import { userInputs } from "./formData";
-
+import useUserManagement from './hooks/useUserManagement'
 // Tạo Context
 export const AppContext = createContext();
 
 const App = () => {
-  // Xử lí state global ở đây, truyền vô những cái con
-
-  // const homepageProps = {
-  //   operatorCount,
-  //   setOperatorCount,
-  //   selectedOperator,
-  //   setSelectedOperator,
-  //   digitNumber,
-  //   setDigitNumber,
-  // };
-
-  // const  testAppPageProps = {
-  //   operatorCount,
-  //   selectedOperator,
-  //   digitNumber
-  // };
+  // const { users, selectedUser, fetchUsers, editUser, deleteUser } = useUserManagement();
   return (
     <BrowserRouter>
       <div className="app">

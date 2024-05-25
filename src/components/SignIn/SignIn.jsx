@@ -99,7 +99,7 @@ const SignIn = () => {
                         onChange={handlePasswordChange}
                         required
                         className="appearance-none border rounded w-full py-2 px-3 pr-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        placeholder='*****'
+                        placeholder='your-password'
                     />
                     
                     <button

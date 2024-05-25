@@ -65,6 +65,7 @@ const SignUp = () => {
                         onChange={handleNameChange}
                         required
                         className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        placeholder='your-name'
                     />
                 </div>
                 <div className="mb-6">
@@ -78,6 +79,7 @@ const SignUp = () => {
                         onChange={handleEmailChange}
                         required
                         className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        placeholder='your-email@gmail.com'
                     />
                 </div>
                 <div className="mb-6">
@@ -91,6 +93,7 @@ const SignUp = () => {
                         onChange={handlePasswordChange}
                         required
                         className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        placeholder='your-password'
                     />
                 </div>
                 <div className="flex items-center justify-between">

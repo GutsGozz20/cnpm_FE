@@ -15,7 +15,7 @@ const Sidebar = () => {
     <div className="flex-[1.3] min-h-screen border-r border-lightgray bg-whitesmoke">
       <div className="flex items-center justify-center h-[50px]">
         <Link to="/"className="text-none">
-          <span className="text-[20px] font-bold text-[#210876]">DesignMediaX</span>
+          <span className="text-[20px] font-bold text-[#210876]">FINGER MATH</span>
         </Link>
       </div>
       <hr />
@@ -36,7 +36,6 @@ const Sidebar = () => {
               <span className="text-[13px] font-semibold text-[#616161] ml-[10px]">Users</span>
             </li>
           </Link>
-
 
           <p className="text-[14px] font-bold text-[#616161] mt-[15px] mb-[5px]">SERVICE</p>
           <li className="flex items-center p-[5px] cursor-pointer hover:bg-[#b3a4fe]">

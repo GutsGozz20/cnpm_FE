@@ -9,7 +9,7 @@ const Featured = () => {
   return (
     <div className="flex-2 p-10 shadow-lg rounded-lg">
       <div className="flex justify-between items-center text-gray-600">
-        <h1 className="text-lg font-semibold">Total Revenue</h1>
+        <h1 className="text-lg font-semibold">Total Score</h1>
         <MoreVertOutlinedIcon fontSize="small" />
       </div>
       <div className="p-20 flex flex-col items-center justify-center space-y-15">
@@ -31,29 +31,29 @@ const Featured = () => {
             )}
           </ChangingProgressProvider>
         </div>
-        <p className="text-lg font-semibold">Total sales made today</p>
-        <p className="text-2xl">$2042.50K</p>
-        <p className="text-xs text-gray-600">Previous transactions</p>
+        <p className="text-lg font-semibold">Total score made today</p>
+        <p className="text-2xl">1200</p>
+        <p className="text-xs text-gray-600">Previous score</p>
         <div className="w-full flex justify-between">
           <div className="text-center">
             <div className="text-sm text-gray-600itemTitle">Target</div>
             <div className="flex items-center text-sm text-red-600">
               <KeyboardArrowDownIcon fontSize="small" />
-              <div className="resultAmount ">$19.4k</div>
+              <div className="resultAmount ">50000</div>
             </div>
           </div>
           <div className="text-center">
             <div className="text-sm text-gray-600">Last Week</div>
             <div className="flex items-center text-sm text-green-600">
               <KeyboardArrowDownIcon fontSize="small" />
-              <div className="resultAmount">$60.4k</div>
+              <div className="resultAmount">15000</div>
             </div>
           </div>
           <div className="text-center">
             <div className="text-sm text-gray-600">Last Month</div>
             <div className="flex items-center text-sm text-red-600">
               <KeyboardArrowDownIcon fontSize="small" />
-              <div className="resultAmount">$73.4k</div>
+              <div className="resultAmount">40000</div>
             </div>
           </div>
         </div>

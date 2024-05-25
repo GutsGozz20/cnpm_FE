@@ -1,15 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "./../../datatableSource";
-
+import {  userRows } from "./../../datatableSource";
+import axios from "axios"
 
 import { Link } from "react-router-dom";
+import { getallUser } from "../../router/userRouter";
 
 const Datatable = () => {
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    (async function fetchData() {
+      const {data} = await axios.get(getallUser)
+      const allUser = (data.data || []).map((u) => { return {id: u._id, username: u.username, email: u.email,password: u.password}})
+      console.log(allUser);
+      setData(allUser)
+
+    })()
+  }, [])
+
+  const userColumns = [
+    { field: "id", headerName: "ID", width: 70 },
+    {
+      field: "username",
+      headerName: "User",
+      width: 230,
+      renderCell: (params) => {
+        return (
+          <div className="cellWithImg">
+            {/* <img className="cellImg" src={params.row.img} alt="avatar" /> */}
+            {params.row.username}
+          </div>
+        );
+      },
+    },
+    { field: "email", headerName: "Email", width: 200 },
+    { field: "password", headerName: "Password", width: 200 },
+  ];
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    setData(data.filter((item) => item._id !== id));
   };
   const actionColumn = [
     {
@@ -19,12 +49,14 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="flex items-center gap-4">
-            <Link to="/users/userId" style={{ textDecoration: "none" }}>
-              <div className="px-1 py-0.5 rounded text-darkblue border border-dotted border-darkblue cursor-pointer">View</div>
+            <Link to={`/users/${params.row.id}`} style={{ textDecoration: "none" }}>
+              <div className="px-1 py-0.5 rounded text-darkblue border border-dotted border-darkblue cursor-pointer">
+                View
+              </div>
             </Link>
             <div
               className="px-1 py-0.5 rounded text-crimson border border-dotted border-crimson cursor-pointer"
-              onClick={() => handleDelete(params.row.id)}
+        onClick={() => handleDelete(params.id)}
             >
               Delete
             </div>

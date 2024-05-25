@@ -17,6 +17,8 @@ const TestApp = () => {
   const [timer, setTimer] = useState(Number(globalState.time));
   // const [updateCount, setUpdateCount] = useState(0); 
   const [showModal, setShowModal] = useState(false);
+  const [questionTitle, setQuestionTitle] = useState(`Question No ${count}`);
+  const [isCorrect, setIsCorrect] = useState(null); 
 
   const handleNumberClick = (number) => {
     setInputValue(prevValue => prevValue + number);
@@ -33,26 +35,30 @@ const TestApp = () => {
     const evaluateExpression = math.evaluate(expression[0])
 
     if (evaluateExpression === Number(inputValue)) {
-      console.log("Done!!")
+    
       if(!questionAnswered){
         setScore(prevScore => prevScore + 10);
         setCurrentAnswer(evaluateExpression);
       }
+    
+      setIsCorrect(true);
+      setQuestionTitle(`Correct!!! `);
     } else {
-       console.log("Ngu dốt!!")
-       setCurrentAnswer(evaluateExpression);
+      setCurrentAnswer(evaluateExpression);
+      setIsCorrect(false);
+      setQuestionTitle(`Incorrect!!!`);
     }
     // setCurrentAnswer(evaluateExpression);
     setIsSubmit(true);
   };
   
   const handleNext = () => {
-    if (!inputValue) {
-      setShowModal(true);
-      // setTimer(timer);
-      // setTimer(Number(globalState.time));
-      return;
-    }
+    // if (!inputValue) {
+    //   setShowModal(true);
+    //   // setTimer(timer);
+    //   // setTimer(Number(globalState.time));
+    // //  return;
+    // }
 
     if(count === 10){
       navigate('/result',{state: {score}});
@@ -64,18 +70,24 @@ const TestApp = () => {
       setQuestionAnswered(false);
       setIsSubmit(false);
       setTimer(Number(globalState.time));
+      setQuestionTitle(`Question No ${count + 1}`);
+      setIsCorrect(null);
     }
   };
 
-  const handleSaveChanges = () => {
-    if (!inputValue) {
-      // setShowModal(false);
+  const handleSaveChanges = (isYesClicked) => {
+    if (isYesClicked) {
+      setShowModal(false);
+      setIsCorrect(false);
+      setQuestionTitle(`Incorrect!!!`);
+      setCurrentAnswer(true);
       handleNext();
-      // return;
+      return;
     }
-    setCurrentAnswer(true);
-    setIsSubmit(true);
-    setShowModal(false);
+      // setShowModal(false);
+    //  setCurrentAnswer(true);
+    // setIsSubmit(true);
+    // setShowModal(false);
   };
 
   // Timer.
@@ -105,10 +117,10 @@ const TestApp = () => {
 
       <div className="container mx-auto">
         <div className="flex flex-col items-center mb-8">
-          <h1 className="text-2xl font-semibold text-black"> Question No {count}</h1>
+          <h1 className={`text-2xl font-semibold ${isCorrect === null ? 'text-black' : isCorrect ? 'text-green-600' : 'text-red-600'}`}>{questionTitle}</h1>
           <div className='flex items-center'>
-            <p className='text-2xl font-bold text-gray-800 mb-0 mt-4 mr-4'>{globalState.currentQuestion}</p>
-            <p className="text-2xl font-semibold text-black mb-0 mt-4"> {currentAnswer}</p>
+            <p className={`text-2xl font-bold text-gray-800 mb-0 mt-4 mr-4 ${isCorrect === null ? 'text-black' : isCorrect ? 'text-green-600' : 'text-red-600'}`}>{globalState.currentQuestion}</p>
+            <p className={`text-2xl font-semibold text-black mb-0 mt-4  ${isCorrect === null ? 'text-black' : isCorrect ? 'text-green-600' : 'text-red-600'}`}> {currentAnswer}</p>
           </div>
 
         <div className="flex items-center">
@@ -139,7 +151,7 @@ const TestApp = () => {
                 key={number} 
                 className=" rounded-full w-20 h-20 bg-gray-200 text-red-500 font-bold text-lg md:text-xl lg:text-2xl"
                 onClick={() => handleNumberClick(number)}
-                //  disabled={isSubmit}
+                 disabled={isSubmit}
                 >
                 {number}
               </button>
@@ -187,10 +199,11 @@ const TestApp = () => {
             <button
               type="button"
               className="bg-yellow-400 text-white px-4 py-2 rounded hover:bg-green-700"
-              onClick={handleSaveChanges}
+              onClick={handleSaveChanges} 
             >
               Yes
             </button>
+
           </div>
         </div>
       </div>

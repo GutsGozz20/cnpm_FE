@@ -1,11 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { DriveFolderUploadOutlined } from "@mui/icons-material";
 import DefaultProfile from "../../asset/image/DefaultProfile.jpg"
+import axios from "axios";
 
 const New = ({ inputs = [], title }) => {
   const [file, setFile] = useState(null);
+
+  const [value, setValue] = useState({
+    username: "",
+    email: "",
+    password: ""
+  })
+
+  const handleChange = (e) => {
+    const value = e.target.value
+    const key = e.target.name
+    setValue((prev) =>{return {...prev, [key]: value}})
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+     const {data} = await axios.post('http://localhost:5000/api/v1/create-user', value);
+      setValue({ username: "",
+      email: "",
+      password: ""})
+    } catch (error) {
+      console.log(error);
+    }
+   
+  };
 
   return (
     <div className="flex w-full ">
@@ -28,7 +54,7 @@ const New = ({ inputs = [], title }) => {
             />
           </div>
           <div className="flex-2">
-            <form className="flex flex-wrap gap-7.5 justify-around">
+            <form className="flex flex-wrap gap-7.5 justify-around" onSubmit={handleSubmit}>
               <div className="w-2/5">
                 <label className="flex items-center gap-2.5" htmlFor="file">
                   Image: <DriveFolderUploadOutlined className="cursor-pointer" />
@@ -42,9 +68,10 @@ const New = ({ inputs = [], title }) => {
               </div>
               {Array.isArray(inputs) && inputs.length > 0 ? (
                 inputs.map((input) => (
-                  <div className="w-2/5" key={input.id}>
+                  <div className="w-2/5  flex flex-col" key={input.id}>
                     <label className="flex items-center gap-2.5">{input.label}</label>
                     <input
+                      onChange={handleChange}
                       type={input.type}
                       id={input.id}
                       name={input.name}
