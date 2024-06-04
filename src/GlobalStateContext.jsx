@@ -1,8 +1,8 @@
 import React, { createContext, useState } from "react";
 
-const GlobalStateContext = createContext();
+ const GlobalStateContext = createContext();
 
-export const GlobalStateProvider = ({ children }) => {
+ export const GlobalStateProvider = ({ children }) => {
 
     const [time, setTime] = useState(10);
     const [operatorCount, setOperatorCount] = useState('1');
@@ -31,6 +31,7 @@ export const GlobalStateProvider = ({ children }) => {
     )
 }
 
+export default GlobalStateProvider
 
-export default GlobalStateContext;
+
 

@@ -1,14 +1,15 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {BrowserRouter as Router, useNavigate } from 'react-router-dom';
 import background from "../../asset/image/LOGOLEFT.png";
 import logoKT from "../../asset/image/logo-kt.png";
 import isEmpty from "validator/lib/isEmpty";
+import { FaEye } from "react-icons/fa";
 
 const SignInAdmin = () => {
     const navigate = useNavigate();
-    const [email, setEmail] = useState('dien20@gmail.com');
-    const [password, setPassword] = useState('dien20');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [validationMsg, setValidationMsg] = useState('');
 
@@ -87,49 +88,8 @@ const SignInAdmin = () => {
                         className="appearance-none border rounded w-full py-2 px-3 pr-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         placeholder='*****'
                     />
-                    <button
-                        type="button"
-                        className="absolute inset-y-0 right-0 px-3 py-2"
-                        onClick={togglePasswordVisibility}
-                    >
-                        {showPassword ? (
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6 text-gray-700"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M6 12l2-2m0 0l2-2m-2 2l2 2m-2-2l2 2m7 4l-7-4-7 4v-2l7-4 7 4v2z"
-                                />
-                            </svg>
-                        ) : (
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-9 w-9 text-gray-500 mt-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                />
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M12 17l5-5-5-5M6 12h12"
-                                />
-                            </svg>
-                        )}
-                    </button>
+                    <FaEye />
+                   
                 </div>
                 <div className="block text-red-700 text-sm mb-2 ">
                     <p className='text-red-400 text-xs italic'>{

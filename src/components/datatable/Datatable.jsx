@@ -38,9 +38,16 @@ const Datatable = () => {
     { field: "password", headerName: "Password", width: 200 },
   ];
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item._id !== id));
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/v1/users/${id}`);
+      setData(data.filter((item) => item.id !== id));
+    } catch (error) {
+      console.error("Failed to delete user:", error);
+    }
   };
+  
+  
   const actionColumn = [
     {
       field: "action",

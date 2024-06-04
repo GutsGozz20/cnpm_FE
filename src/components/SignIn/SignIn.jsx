@@ -7,6 +7,7 @@ import logoKT from "../../asset/image/logo-kt.png";
 import isEmpty from "validator/lib/isEmpty"
 
 
+
 const SignIn = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -41,11 +42,12 @@ const SignIn = () => {
         navigate("/");
       } catch (error) {
         console.log(error);
+        setMessage("Email does not exist or Incorrect password");
       }
     };
 
     //
-    const validateAll = () => {
+    const validateAll =  async () => {
         const msg = {};
         if(isEmpty(email)){
             msg.email = "Please input your Email";
@@ -63,7 +65,27 @@ const SignIn = () => {
         setValidationMsg(msg) 
         if(Object.keys(msg).length > 0) return false;
         return true;
-    }
+
+        // try {
+        //     const { data } = await axios.post(login, { email, password });
+        //     if (!data.success) {
+        //         // Nếu thông tin đăng nhập không hợp lệ, hiển thị thông báo lỗi tương ứng
+        //         if (data.error === "Email does not exist") {
+        //             msg.email = "Email does not exist";
+        //         } else if (data.error === "Incorrect password") {
+        //             msg.password = "Incorrect password";
+        //         }
+        //         setValidationMsg(msg);
+        //         return false;
+        //     }
+        //     return true;
+        // } catch (error) {
+        //     console.log(error);
+        //     setMessage("An error occurred during login");
+        //     return false;
+        // }
+    
+}
     
     return (
         // Viết 1 cái component hiện thị lỗi đi, w-full 

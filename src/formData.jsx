@@ -4,7 +4,7 @@ export const userInputs = [
     label: "Username",
     name: "username",
     type: "text",
-    placeholder: "smith_rowe",
+    placeholder: "ng_dien",
   },
   // {
   //   id: 2,
@@ -18,7 +18,7 @@ export const userInputs = [
     label: "Email",
     name: "email",
     type: "email",
-    placeholder: "smith_rowe@gmail.com",
+    placeholder: "ng_diene@gmail.com",
   },
   // {
   //   id: 4,
@@ -49,4 +49,3 @@ export const userInputs = [
   //   placeholder: "United Kingdom",
   // },
 ];
-

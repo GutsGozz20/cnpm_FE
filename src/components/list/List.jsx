@@ -1,246 +1,45 @@
-import React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-
-const rows = [
-  {
-    id: 2117383933399,
-    product: "Food Crusher & Blender",
-    img: "/assets/blender.jpg",
-    customer: "Lee Martin",
-    date: "27th September",
-    amount: 300,
-    method: "Cash on Delivery",
-    status: "Approved",
-  },
-  {
-    id: 6617772543119,
-    product: "Nexus 32Inch TV",
-    img: "/assets/Tv.jpg",
-    customer: "Sebastian Walker",
-    date: "5th February",
-    amount: 100,
-    method: "Online Payment",
-    status: "Pending",
-  },
-  {
-    id: 200116351133,
-    product: "Scanfrost 4-Burner Gas Cooker",
-    img: "/assets/gascooker.jpg",
-    customer: "Lopez Williams",
-    date: "1st June",
-    amount: 200,
-    method: "Online Payment",
-    status: "Approved",
-  },
-  {
-    id: 22567721541,
-    product: "Bluetooth Multimedia Speakers",
-    img: "/assets/speaker.jpg",
-    customer: "Alexander White",
-    date: "21st August",
-    amount: 160,
-    method: "Cash on Delivery",
-    status: "Pending",
-  },
-  {
-    id: 2117383933399,
-    product: "Lenovo Ideapad",
-    img: "/assets/laptop2.jpg",
-    customer: "Garcia Davis",
-    date: "16th February",
-    amount: 570,
-    method: "Online Payment",
-    status: "Approved",
-  },
-  {
-    id: 4520015619,
-    product: "Apple Iphone 14 Pro Max",
-    img: "/assets/iphone.webp",
-    customer: "Camila Michael",
-    date: "20th March",
-    amount: 1800,
-    method: "Cash on Delivery",
-    status: "Approved",
-  },
-  {
-    id: 25566001527,
-    product: "3 IN 1 Bag Set",
-    img: "/assets/bag.jpg",
-    customer: "Madison Anthony",
-    date: "3rd October",
-    amount: 20,
-    method: "Cash on Delivery",
-    status: "Pending",
-  },
-  {
-    id: 2117383933399,
-    product: "Oroimo FreePods",
-    img: "/assets/freepod.jpg",
-    customer: "Natalie King",
-    date: "29th December",
-    amount: 25,
-    method: "Cash on Delivery",
-    status: "Approved",
-  },
-  {
-    id: 2117383933399,
-    product: "Food Crusher & Blender",
-    img: "/assets/blender.jpg",
-    customer: "Miller Brooks",
-    date: "27th September",
-    amount: 270,
-    method: "Cash on Delivery",
-    status: "Approved",
-  },
-  {
-    id: 6117383933399,
-    product: "Food Crusher & Blender",
-    img: "/assets/blender.jpg",
-    customer: "Lee Martin",
-    date: "27th September",
-    amount: 300,
-    method: "Cash on Delivery",
-    status: "Approved",
-  },
-  {
-    id: 8617772543119,
-    product: "Nexus 32Inch TV",
-    img: "/assets/Tv.jpg",
-    customer: "Sebastian Walker",
-    date: "5th February",
-    amount: 100,
-    method: "Online Payment",
-    status: "Pending",
-  },
-  {
-    id: 200116351133,
-    product: "Scanfrost 4-Burner Gas Cooker",
-    img: "/assets/gascooker.jpg",
-    customer: "Lopez Williams",
-    date: "1st June",
-    amount: 200,
-    method: "Online Payment",
-    status: "Approved",
-  },
-  {
-    id: 28567721541,
-    product: "Bluetooth Multimedia Speakers",
-    img: "/assets/speaker.jpg",
-    customer: "Alexander White",
-    date: "21st August",
-    amount: 160,
-    method: "Cash on Delivery",
-    status: "Pending",
-  },
-  {
-    id: 2517383933399,
-    product: "Lenovo Ideapad",
-    img: "/assets/laptop2.jpg",
-    customer: "Garcia Davis",
-    date: "16th February",
-    amount: 570,
-    method: "Online Payment",
-    status: "Approved",
-  },
-  {
-    id: 48820015619,
-    product: "Apple Iphone 14 Pro Max",
-    img: "/assets/iphone.webp",
-    customer: "Camila Michael",
-    date: "20th March",
-    amount: 1800,
-    method: "Cash on Delivery",
-    status: "Approved",
-  },
-  {
-    id: 2557766001527,
-    product: "3 IN 1 Bag Set",
-    img: "/assets/bag.jpg",
-    customer: "Madison Anthony",
-    date: "3rd October",
-    amount: 20,
-    method: "Cash on Delivery",
-    status: "Pending",
-  },
-  {
-    id: 21047383933399,
-    product: "Oroimo FreePods",
-    img: "/assets/freepod.jpg",
-    customer: "Natalie King",
-    date: "29th December",
-    amount: 25,
-    method: "Cash on Delivery",
-    status: "Approved",
-  },
-  {
-    id: 21987383933399,
-    product: "Food Crusher & Blender",
-    img: "/assets/blender.jpg",
-    customer: "Miller Brooks",
-    date: "27th September",
-    amount: 270,
-    method: "Cash on Delivery",
-    status: "Approved",
-  },
-];
+// components/List.jsx
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const List = () => {
-  return (
-    <div className="bg-whitesmoke text-[#616161]">
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell className="bg-whitesmoke text-[#616161]"> ID</TableCell>
-              {/* <TableCell className="bg-whitesmoke text-[#616161]">Product</TableCell> */}
-              <TableCell className="bg-whitesmoke text-[#616161]">User</TableCell>
-              <TableCell className="bg-whitesmoke text-[#616161]">Date</TableCell>
-              {/* <TableCell className="bg-whitesmoke text-[#616161]">Amount</TableCell> */}
-              {/* <TableCell className="bg-whitesmoke text-[#616161]">Payment Method</TableCell> */}
-              {/* <TableCell className="bg-whitesmoke text-[#616161]">Status</TableCell> */}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell className="bg-whitesmoke text-[#616161]">{row.id}</TableCell>
-                {/* <TableCell className="bg-whitesmoke text-[#616161]">
-                  <div className="flex items-center">
-                    <img
-                      src={row.img}
-                      alt=""
-                      className="w-10 h-10 rounded-full object-cover mr-2 border border-[#210876]"
-                    />
-                    {row.product}
-                  </div>
-                </TableCell> */}
-                <TableCell className="bg-whitesmoke text-[#616161]">{row.customer}</TableCell>
-                <TableCell className="bg-whitesmoke text-[#616161]">{row.date}</TableCell>
-                {/* <TableCell className="bg-whitesmoke text-[#616161]">{row.amount}</TableCell> */}
-                {/* <TableCell className="bg-whitesmoke text-[#616161]">{row.method}</TableCell> */}
-                {/* <TableCell className="bg-whitesmoke text-[#616161]">
-                  <span
-                    className={`px-1 py-[3px] rounded-md ${
-                      row.status === "Approved"
-                        ? "text-green-600 bg-green-100"
-                        : "text-goldenrod-600 bg-yellow-200"
-                    }`}
-                  >
-                    {row.status}
-                  </span>
-                </TableCell> */}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+    const [totalScore, setTotalScore] = useState([]);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        const fetchTotalScore = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/api/v1/total-score');
+                setTotalScore(response.data.totalScore);
+            } catch (error) {
+                console.error(error);
+                setError('Failed to fetch total score');
+            }
+        };
+
+        fetchTotalScore();
+    }, []);
+
+    return (
+      <div>
+          <h1>User List</h1>
+          {error && <p>{error}</p>}
+          <h1>Users with Scores:</h1>
+          <ul>
+              {Array.isArray(totalScore) ? (
+                  totalScore.map(user => (
+                      <li key={user._id}>
+                          <div>ID: {user._id}</div>
+                          <div>Username: {user.username}</div>
+                          <div>Email: {user.email}</div>
+                          <div>Score: {user.score}</div>
+                      </li>
+                  ))
+              ) : (
+                  <li>No users found</li>
+              )}
+          </ul>
+      </div>
   );
 };
 

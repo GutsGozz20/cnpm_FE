@@ -45,6 +45,7 @@ const SignUp = () => {
                 setMessage(true);
             }
         }
+        // cái ni của user, admin cái khác
     };
 
     return (

@@ -8,14 +8,14 @@ import TestAppPage from './page/TestAppPage';
 import ResultPage from './page/ResultPage';
 import AdminPage from './page/AdminPage';
 import SignInAdmin from './components/Admin/SignInAdmin';
-import AdminDashboard from './components/Admin/AdminDashboard';
+// import AdminDashboard from './components/Admin/AdminDashboard';
 import Dashboard from './components/Admin/Dashboard';
 import Single from './components/Single/Single';
 import { NearMe } from '@mui/icons-material';
 import New from './components/new/New';
 import CustomerUser from './components/customersUser/CutomerUser';
 import { userInputs } from "./formData";
-import useUserManagement from './hooks/useUserManagement'
+// import useUserManagement from './hooks/useUserManagement'
 // Tạo Context
 export const AppContext = createContext();
 
@@ -36,7 +36,7 @@ const App = () => {
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/users/:userId" element={<Single />} />
           <Route path="/users/:userId/new" element={<New inputs={userInputs} title="Add New User" />} />
-          <Route path='/users/:userId' element={<Single />} />
+          {/* <Route path='/users/:userId' element={<Single />} /> */}
           <Route path='/users' element={<CustomerUser />} />
         </Routes>
       </div>

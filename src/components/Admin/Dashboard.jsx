@@ -23,7 +23,7 @@ const Dashboard = () => {
           <Chart title="Last 6 months (Revenue)" aspect={2 / 1} />
         </div>
         <div className="shadow-md p-5 m-5">
-          <div className="text-[20px] font-medium text-[#616161] mb-4">Latest Transactions</div>
+          <div className="text-[20px] font-medium text-[#616161] mb-4">TOTAL SCORE</div>
           <List />
         </div>
       </div>

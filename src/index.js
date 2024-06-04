@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { GlobalStateProvider } from './GlobalStateContext'; // Bọc lại cả cái app
+import GlobalStateProvider  from './GlobalStateContext'; // Bọc lại cả cái app
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
